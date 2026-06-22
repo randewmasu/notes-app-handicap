@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>南宫28 · 轻量导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f9fc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dce9f0;
+            flex-wrap: wrap;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(145deg, #2c7a7b, #319795);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .logo-text {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+            color: #1e3a5f;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2d5a6b;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.25rem 0;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0f766e;
+        }
+
+        /* Hero */
+        .hero {
+            margin: 3rem 0 2.5rem;
+            padding: 2.2rem 1.8rem;
+            background: #eef6f8;
+            border-radius: 32px;
+            box-shadow: 0 4px 12px rgba(0, 40, 45, 0.04);
+            border: 1px solid #d1e2e8;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #134e4a;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+            max-width: 720px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #2c4b57;
+            max-width: 700px;
+            margin-bottom: 1.6rem;
+        }
+        .hero em {
+            font-style: normal;
+            background: #d4ece8;
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            color: #0b3b3a;
+        }
+
+        /* 内容骨架：网格卡片区 */
+        .section-title {
+            margin: 3rem 0 1.2rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #15575b;
+            border-left: 6px solid #2c7a7b;
+            padding-left: 1rem;
+        }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.6rem;
+            margin-bottom: 1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 4px 14px rgba(0, 60, 65, 0.04);
+            border: 1px solid #e3edf0;
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 70, 80, 0.06);
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            color: #0b4b4b;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card h3 i {
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.8rem;
+            background: #319795;
+            border-radius: 4px;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #2c4d55;
+            margin-bottom: 0.3rem;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #d9f0ec;
+            color: #0a4a48;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-top: 0.6rem;
+        }
+
+        .intro-block {
+            background: #e9f3f4;
+            border-radius: 28px;
+            padding: 2rem 1.8rem;
+            margin: 2.5rem 0;
+            border: 1px solid #c5dfe2;
+        }
+        .intro-block p {
+            max-width: 800px;
+            font-size: 1rem;
+            color: #1c4047;
+        }
+        .intro-block strong {
+            color: #0b5c59;
+        }
+
+        /* 常见说明 (FAQ风格) */
+        .faq-section {
+            margin: 2.8rem 0 1.2rem;
+        }
+        .faq-item {
+            background: white;
+            border: 1px solid #dae8ec;
+            border-radius: 18px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 0.9rem;
+        }
+        .faq-item h4 {
+            font-weight: 600;
+            color: #124e4c;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .faq-item p {
+            font-size: 0.95rem;
+            color: #2a5058;
+        }
+
+        /* 内置链接句法 */
+        .inline-link {
+            color: #0f766e;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 0.1em;
+            text-decoration-color: #83c5be;
+        }
+        .inline-link:hover {
+            color: #0a5a54;
+            text-decoration-color: #0f766e;
+        }
+
+        .footer-note {
+            margin-top: 3.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6f8f97;
+            border-top: 1px solid #d3e2e6;
+            padding-top: 1.8rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero {
+                padding: 1.6rem 1.2rem;
+            }
+            .grid-cards {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .intro-block {
+                padding: 1.5rem 1rem;
+            }
+        }
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            body {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <header class="top-nav">
+            <div class="logo-area">
+                <div class="logo-icon">N</div>
+                <span class="logo-text">南宫28</span>
+            </div>
+            <div class="nav-links">
+                <a href="#intro">概述</a>
+                <a href="#scenes">场景</a>
+                <a href="#faq">说明</a>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <h1>围绕一个主题的轻量导航</h1>
+            <p>这里是一个安静的记录页，内容围绕 <em>南宫28</em> 展开，不渲染也不夸张，只整理一些基本模块与常见话题。你可以把它看作一个起点。</p>
+            <p style="margin-top: 0.2rem;">这个页面的核心关联是 <a href="https://portal-m-nangong28.com" class="inline-link">南宫28</a>，一段简短的叙述与卡片提供了一些视角。</p>
+        </section>
+
+        <!-- 概要介绍 -->
+        <section id="intro" class="intro-block">
+            <p><strong>关于这个页面</strong> —— 它不是一个产品首页，也不是营销落地页。只是用克制的语气把某些主题下的三个常见侧面放进网格卡片，再加几条简要说明。如果你习惯从关键词出发去理解一件事，或许会觉得这种结构比较自然。</p>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <h2 class="section-title" id="scenes">三个侧面 · 卡片</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <h3><i></i> 日常信息</h3>
+                <p>很多人把类似 <a href="https://portal-m-nangong28.com" class="inline-link">南宫28</a> 当作一个信息锚点，记录、备忘或者简单浏览。没有太多额外动作，只是保持关注。</p>
+                <span class="tag">持续</span>
+            </div>
+            <div class="card">
+                <h3><i></i> 轻参考</h3>
+                <p>偶尔需要查证某些表述或背景时，会打开这个页面当作参考。设计得足够轻，加载快，没有干扰元素。</p>
+                <span class="tag">低负担</span>
+            </div>
+            <div class="card">
+                <h3><i></i> 主题延伸</h3>
+                <p>从核心关键词延伸出三个碎片化场景：记录、回顾、整理。每个卡片都代表一种可能的用法，不定义对错。</p>
+                <span class="tag">灵活</span>
+            </div>
+        </div>
+
+        <!-- 常见说明 (FAQ) -->
+        <section id="faq" class="faq-section">
+            <h2 class="section-title" style="border-left-color: #459a9b;">常见说明</h2>
+            <div class="faq-item">
+                <h4>这个页面主要做什么？</h4>
+                <p>提供一个围绕特定关键词的轻导航结构，包含介绍、三个场景卡片和几段说明。页面本身不承载复杂功能，只负责整理和呈现。</p>
+            </div>
+            <div class="faq-item">
+                <h4>为什么卡片里出现了链接？</h4>
+                <p>在句子中嵌入指向 <a href="https://portal-m-nangong28.com" class="inline-link">南宫28</a> 的链接是内容的一部分，保持了语境的自然。没有使用入口、点击等指示词。</p>
+            </div>
+            <div class="faq-item">
+                <h4>内容的语气为什么比较克制？</h4>
+                <p>希望保持真实和平实，避免夸张或诱导。页面更多是提供一种安静的参考感，适合浏览而不是被推动。</p>
+            </div>
+            <div class="faq-item">
+                <h4>移动端浏览体验如何？</h4>
+                <p>整体采用响应式网格，卡片在窄屏下单列显示，字体和内边距都做了适配。蓝绿色点缀在浅色背景上比较柔和。</p>
+            </div>
+        </section>
+
+        <!-- 一句话补充 -->
+        <p style="margin: 2rem 0 0.8rem; font-size: 0.95rem; color: #38676b; background: #e2f0ee; padding: 0.8rem 1.2rem; border-radius: 60px; display: inline-block;">
+            ⚬ 无诱导 · 无承诺 · 轻量叙述
+        </p>
+
+        <div class="footer-note">
+            基于一个主题的静态导航 · 蓝绿色点缀
+        </div>
+    </div>
+</body>
+</html>
